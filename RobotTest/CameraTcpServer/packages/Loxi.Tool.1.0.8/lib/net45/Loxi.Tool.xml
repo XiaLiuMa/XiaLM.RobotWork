@@ -1,0 +1,692 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Loxi.Tool</name>
+    </assembly>
+    <members>
+        <member name="M:Loxi.Tool.AESHelper.AesEncrypt(System.Byte[],System.String)">
+            <summary>
+             AES 加密
+            </summary>
+            <param name="str">明文（待加密）</param>
+            <param name="key">密文</param>
+            <returns></returns>
+        </member>
+        <member name="M:Loxi.Tool.AESHelper.AesDecrypt(System.Byte[],System.String)">
+            <summary>
+             AES 解密
+            </summary>
+            <param name="str">明文（待解密）</param>
+            <param name="key">密文</param>
+            <returns></returns>
+        </member>
+        <member name="T:Loxi.Tool.AppDomainHelp">
+            <summary>
+            应用程序域帮助类
+            </summary>
+        </member>
+        <member name="M:Loxi.Tool.AppDomainHelp.Create(System.String,System.String,System.String)">
+            <summary>
+            创建应用程序域
+            </summary>
+            <param name="friendlyName">友好名称</param>
+            <param name="appDomainBaseDirectory">应用程序目录</param>
+            <param name="privateBinPath">(相对路径)获取或设置应用程序基目录下的目录列表，这些目录被探测以寻找其中的私有程序集。 目录名称的列表，用分号分隔。</param>
+            <returns></returns>
+        </member>
+        <member name="M:Loxi.Tool.AppDomainHelp.GetProxy``1(System.AppDomain,System.String,System.String)">
+            <summary>
+            得到代理对象
+            </summary>
+            <typeparam name="T">代理类型</typeparam>
+            <param name="domain">应用程序域</param>
+            <param name="assembly">程序路径。(相对路径)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Loxi.Tool.AppDomainHelp.UnLoad(System.AppDomain)">
+            <summary>
+            卸载程序域
+            </summary>
+            <param name="domain"></param>
+        </member>
+        <member name="M:Loxi.Tool.AssembliesHelp.CreateObjects``1(System.Reflection.Assembly)">
+            <summary>
+            创建对象
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="assembly"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Loxi.Tool.AssembliesHelp.Load(System.String)">
+            <summary>
+            加载程序集
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Loxi.Tool.Com.BufferManage">
+            <summary>
+            字节管理
+            </summary>
+        </member>
+        <member name="T:Loxi.Tool.Com.Codecs.ICodecBuilder">
+            <summary>
+            解码器接口
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Com.Codecs.ICodecBuilder.DecodingBuilder">
+            <summary>
+            解码
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Com.Codecs.ICodecBuilder.EncodingBuilder">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="M:Loxi.Tool.Com.Codecs.ICodecBuilder.Clone">
+            <summary>
+            克隆
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Loxi.Tool.Com.ComClient.Send(System.Byte[])">
+            <summary>
+            发送数据
+            </summary>
+            <param name="bs">数据</param>
+        </member>
+        <member name="M:Loxi.Tool.Com.ComClient.Send(System.Byte[],System.Int32)">
+            <summary>
+            发送数据,数据大于11K的数据，将会分割为每份11k的数据发送
+            </summary>
+            <param name="bs">数据</param>
+            <param name="interval">分包发送间隔</param>
+        </member>
+        <member name="T:Loxi.Tool.Com.ComParms">
+            <summary>
+            串口参数
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Com.ComParms.PortName">
+            <summary>
+            串口名
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Com.ComParms.BaudRate">
+            <summary>
+            比特率
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Com.ComParms.Parity">
+            <summary>
+            摘要:
+            获取或设置奇偶校验检查协议。
+            返回结果:
+            枚举值之一，表示奇偶校验检查协议。 默认值为 System.IO.Ports.Parity.None。
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Com.ComParms.DataBits">
+            <summary>
+            获取或设置每个字节的标准数据位长度。
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Com.ComParms.StopBits">
+            <summary>
+            获取或设置每个字节的标准停止位数。
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Com.ComParms.ReadBufferSize">
+            <summary>
+            接收缓冲区大小
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Com.ComParms.ReadTimeout">
+            <summary>
+            接收超时
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Com.ComParms.WriteBufferSize">
+            <summary>
+            发送缓冲区大小
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Com.ComParms.WriteTimeout">
+            <summary>
+            发送缓冲区超时
+            </summary>
+        </member>
+        <member name="T:Loxi.Tool.Com.Parity">
+            <summary>
+             指定 System.IO.Ports.SerialPort 对象的奇偶校验位。
+            </summary>
+        </member>
+        <member name="T:Loxi.Tool.Com.StopBits">
+            <summary>
+            摘要: 指定在 System.IO.Ports.SerialPort 对象上使用的停止位的数目。
+            </summary>  
+        </member>
+        <member name="F:Loxi.Tool.Com.StopBits.None">
+            <summary>
+            不使用停止位。System.IO.Ports.SerialPort.StopBits 属性不支持此值。
+            </summary>
+        </member>
+        <member name="F:Loxi.Tool.Com.StopBits.One">
+            <summary>
+             使用一个停止位。
+            </summary>  
+        </member>
+        <member name="F:Loxi.Tool.Com.StopBits.Two">
+            <summary>
+            使用两个停止位。
+            </summary>
+        </member>
+        <member name="F:Loxi.Tool.Com.StopBits.OnePointFive">
+            <summary>
+              使用 1.5 个停止位。
+            </summary>
+        </member>
+        <member name="M:Loxi.Tool.CRC.CRC_any(System.Byte[],System.UInt64,System.UInt64,System.UInt64,System.UInt64)">
+            <summary>
+            
+            </summary>
+            <param name="blk_adr">输入要校验的字节数组</param>
+            <param name="ulPoly">Poly值，如果是CRC16，那么就是0x8005，如果是CRC-CCITT，那么就是0x1201,这些值网上可以查到</param>
+            <param name="ulInit">CRC初始值，这个很重要，一般我们都是用0作为初始值，但是你的例子中是用0xffff作为初始值，你之所以得到不同的结果，就是这个CRC初始值作怪，询问下对方，那个CRC初始值是多少。</param>
+            <param name="ulXorOut">取反输出设置，用在加密上，一般设置0即可。</param>
+            <param name="ulMask">标志位，如果你你是CRC16，就用0xFFFF，输出16位校验码，如果是CRC8，就用0xFF，输出8位校验码。</param>
+            <returns></returns>
+        </member>
+        <member name="M:Loxi.Tool.JsonConvert.SerializeObject(System.Object)">
+            <summary>
+            内存对象转换为json字符串
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Loxi.Tool.JsonConvert.DeserializeObject``1(System.String)">
+            <summary>
+            Json字符串转内存对象
+            </summary>
+            <param name="jsonString"></param>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Loxi.Tool.ObjectSerializable">
+            <summary>
+            对象序列化
+            </summary>
+        </member>
+        <member name="M:Loxi.Tool.ObjectSerializable.ObjectToBytes``1(``0)">
+            <summary>
+            对象序列为字节
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Loxi.Tool.ObjectSerializable.BytesToObject``1(System.Byte[])">
+            <summary>
+            将字节序列化为对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="bs"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Loxi.Tool.PlugInFrame.Enum.Direction">
+            <summary>
+            消息方向
+            </summary>
+        </member>
+        <member name="F:Loxi.Tool.PlugInFrame.Enum.Direction.broadcast">
+            <summary>
+            广播
+            </summary>
+        </member>
+        <member name="F:Loxi.Tool.PlugInFrame.Enum.Direction.directional">
+            <summary>
+            定向
+            </summary>
+        </member>
+        <member name="T:Loxi.Tool.PlugInFrame.Enum.ViewType">
+            <summary>
+            视图类型
+            </summary>
+        </member>
+        <member name="T:Loxi.Tool.PlugInFrame.Interface.FrameConfiguration">
+            <summary>
+            配置信息
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.PlugInFrame.Interface.FrameConfiguration.PlugRootPath">
+            <summary>
+            默认插件目录
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.PlugInFrame.Interface.FrameConfiguration.PlugFilePaths">
+            <summary>
+            插件文件路劲列表
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.PlugInFrame.Interface.FrameConfiguration.Signatures">
+            <summary>
+            插件注册列表信息
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.PlugInFrame.Interface.FrameConfiguration.SignatureRelations">
+            <summary>
+            注册消息关系
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.PlugInFrame.Interface.FrameConfiguration.Port">
+            <summary>
+            消息接收接口
+            </summary>
+        </member>
+        <member name="M:Loxi.Tool.PlugInFrame.Interface.FrameConfiguration.GetInstance">
+            <summary>
+            得到配置信息对象实例
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Loxi.Tool.PlugInFrame.Interface.FrameConfiguration.SetPlugRootPath(System.String)">
+            <summary>
+            设置默认插件目录
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Loxi.Tool.PlugInFrame.Interface.FrameConfiguration.SetMessagePort(System.Int32)">
+            <summary>
+            设置消息接收接口
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Loxi.Tool.PlugInFrame.Interface.FrameConfiguration.AddPlugFilePath(System.String[])">
+            <summary>
+            添加插件dll文件路径名称
+            </summary>
+            <param name="fileName">插件文件路径名称。注意：必须在根目录下。例如：根目录\插件目录\A.dll.即fileName="插件目录\A.dll"</param>
+            <returns></returns>
+        </member>
+        <member name="M:Loxi.Tool.PlugInFrame.Interface.FrameConfiguration.RegisterMessage(System.Action{Loxi.Tool.PlugInFrame.Mod.Message})">
+            <summary>
+            注册消息接收
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Loxi.Tool.PlugInFrame.Interface.FrameConfiguration.Start">
+            <summary>
+            加载
+            </summary>
+        </member>
+        <member name="M:Loxi.Tool.PlugInFrame.Interface.FrameConfiguration.initSignatures">
+            <summary>
+            加载注册信息
+            </summary>
+        </member>
+        <member name="T:Loxi.Tool.PlugInFrame.Interface.IPlugAgency">
+            <summary>
+            插件代理
+            </summary>
+        </member>
+        <member name="M:Loxi.Tool.PlugInFrame.Interface.IPlugAgency.OnStart">
+            <summary>
+            插件开始载入
+            </summary>
+        </member>
+        <member name="M:Loxi.Tool.PlugInFrame.Interface.IPlugAgency.OnClosed">
+            <summary>
+            插件卸载
+            </summary>
+        </member>
+        <member name="M:Loxi.Tool.PlugInFrame.Interface.IPlugAgency.OnMessage(Loxi.Tool.PlugInFrame.Mod.Message)">
+            <summary>
+            消息
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="T:Loxi.Tool.PlugInFrame.Interface.ISignature">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.PlugInFrame.Interface.ISignature.Signature">
+            <summary>
+            签名，唯一性
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.PlugInFrame.Interface.ISignature.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.PlugInFrame.Interface.ISignature.ViewType">
+            <summary>
+            视图类型
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.PlugInFrame.Interface.ISignature.ViewPlugFileName">
+            <summary>
+            视图插件名称，视图插件要与当前插件同一级目录,如 aView.dll
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.PlugInFrame.Interface.ISignature.Extras">
+            <summary>
+            附加信息
+            </summary>
+        </member>
+        <member name="T:Loxi.Tool.PlugInFrame.Interface.IViewMessage">
+            <summary>
+            视图消息接口
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.PlugInFrame.Interface.IViewMessage.Id">
+            <summary>
+            插件id
+            </summary>
+        </member>
+        <member name="M:Loxi.Tool.PlugInFrame.Interface.IViewMessage.Load">
+            <summary>
+            加载
+            </summary>
+        </member>
+        <member name="M:Loxi.Tool.PlugInFrame.Interface.IViewMessage.ViewMessage(System.String)">
+            <summary>
+            接收消息
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:Loxi.Tool.PlugInFrame.Impl.Expand.Send(Loxi.Tool.PlugInFrame.Impl.AbsPlugAgency,Loxi.Tool.PlugInFrame.Mod.Message,System.String)">
+            <summary>
+            发送定向消息
+            </summary>
+            <param name="message"></param>
+            <param name="plugName"></param>
+        </member>
+        <member name="M:Loxi.Tool.PlugInFrame.Impl.Expand.Broadcast(Loxi.Tool.PlugInFrame.Impl.AbsPlugAgency,Loxi.Tool.PlugInFrame.Mod.Message)">
+            <summary>
+            发送广播消息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Loxi.Tool.PlugInFrame.Impl.Expand.SendView(Loxi.Tool.PlugInFrame.Impl.AbsPlugAgency,System.String)">
+            <summary>
+            发送视图消息
+            </summary>
+            <param name="agency"></param>
+        </member>
+        <member name="T:Loxi.Tool.PlugInFrame.Mod.PlugWindowMessage">
+            <summary>
+            插件窗口信息
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.PlugInFrame.Mod.PlugWindowMessage.Id">
+            <summary>
+            窗口标识
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.PlugInFrame.Mod.PlugWindowMessage.Signature">
+            <summary>
+            注册信息
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.PlugInFrame.Mod.PlugWindowMessage.View">
+            <summary>
+            视图信息
+            </summary>
+        </member>
+        <member name="T:Loxi.Tool.PlugInFrame.Mod.SignatureRelation">
+            <summary>
+            注册关系
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.PlugInFrame.Mod.SignatureRelation.PlugPath">
+            <summary>
+            插件路径
+            </summary>
+        </member>
+        <member name="T:Loxi.Tool.PlugInFrame.Mod.TcpMessage">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="M:Loxi.Tool.PlugInFrame.Mod.TcpMessage.#ctor(Loxi.Tool.PlugInFrame.Enum.Direction,System.String,Loxi.Tool.PlugInFrame.Mod.Message,System.String)">
+            <summary>
+            消息实现
+            </summary>
+            <param name="direction">当值为broadcast时，signature可为null</param>
+            <param name="signature">签名</param>
+        </member>
+        <member name="P:Loxi.Tool.PlugInFrame.Mod.TcpMessage.SendId">
+            <summary>
+            发送者id
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.PlugInFrame.Mod.TcpMessage.Direction">
+            <summary>
+            方向
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.PlugInFrame.Mod.TcpMessage.PlugName">
+            <summary>
+            插件名称
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.PlugInFrame.Mod.TcpMessage.Message">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="T:Loxi.Tool.PlugInFrame.PlugManagement">
+            <summary>
+            插件管理
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.PlugInFrame.PlugManagement.PlugInfos">
+            <summary>
+            插件信息，id与domain的对应关系
+            </summary>
+        </member>
+        <member name="M:Loxi.Tool.PlugInFrame.PlugManagement.Open(Loxi.Tool.PlugInFrame.Interface.ISignature)">
+            <summary>
+            打开插件
+            </summary>
+            <param name="signature"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Loxi.Tool.PlugInFrame.PlugManagement.Close(Loxi.Tool.PlugInFrame.Mod.PlugWindowMessage)">
+            <summary>
+            关闭插件
+            </summary>
+            <param name="plugWindow"></param>
+        </member>
+        <member name="T:Loxi.Tool.PlugInFrame.Proxy.ConfigProxy">
+            <summary>
+            配置代理类
+            </summary>
+        </member>
+        <member name="M:Loxi.Tool.PlugInFrame.Proxy.ConfigProxy.LoadPlugs(System.Collections.Generic.List{System.String})">
+            <summary>
+            加载插件
+            </summary>
+            <param name="filePaths"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Loxi.Tool.PlugInFrame.View.ViewExpand">
+            <summary>
+            视图拓展方法
+            </summary>
+        </member>
+        <member name="T:Loxi.Tool.Tcp.BufferManage">
+            <summary>
+            字节管理
+            </summary>
+        </member>
+        <member name="M:Loxi.Tool.Tcp.Client.AsyncTcpClient.#ctor(System.Net.IPEndPoint,Loxi.Tool.Tcp.Client.IAsyncTcpClientMessage)">
+            <summary>
+            tcp客户端
+            </summary>
+            <param name="endPoint">服务端地址</param>
+            <param name="registration">消息注册体</param>
+        </member>
+        <member name="M:Loxi.Tool.Tcp.Client.AsyncTcpClient.#ctor(System.Net.IPEndPoint,Loxi.Tool.Tcp.Client.IAsyncTcpClientMessage,Loxi.Tool.Tcp.Codecs.ICodecBuilder)">
+            <summary>
+            tcp客户端
+            </summary>
+            <param name="endPoint">服务端地址</param>
+            <param name="registration">消息注册体</param>
+            <param name="builder">解码器</param>
+        </member>
+        <member name="M:Loxi.Tool.Tcp.Client.AsyncTcpClient.#ctor(System.Net.IPEndPoint,Loxi.Tool.Tcp.Client.IAsyncTcpClientMessage,Loxi.Tool.Tcp.Codecs.ICodecBuilder,Loxi.Tool.Tcp.Client.AsyncTcpClientConfiguration)">
+            <summary>
+            tcp客户端
+            </summary>
+            <param name="endPoint">服务端地址</param>
+            <param name="registration">消息注册体</param>
+            <param name="builder">解码器</param>
+            <param name="configuration">配置</param>
+        </member>
+        <member name="M:Loxi.Tool.Tcp.Client.AsyncTcpClient.#ctor(System.Net.IPEndPoint,Loxi.Tool.Tcp.Client.IAsyncTcpClientMessage,Loxi.Tool.Tcp.Codecs.ICodecBuilder,System.Int32)">
+            <summary>
+            tcp客户端
+            </summary>
+            <param name="endPoint">服务端地址</param>
+            <param name="registration">消息注册体</param>
+            <param name="builder">解码器</param>
+            <param name="bufferPool">缓冲池大小</param>
+            <param name="isRestConn">是否重连</param>
+        </member>
+        <member name="M:Loxi.Tool.Tcp.Client.AsyncTcpClient.#ctor(System.Net.IPEndPoint,Loxi.Tool.Tcp.Client.IAsyncTcpClientMessage,Loxi.Tool.Tcp.Codecs.ICodecBuilder,Loxi.Tool.Tcp.Client.AsyncTcpClientConfiguration,System.Int32)">
+            <summary>
+            tcp客户端
+            </summary>
+            <param name="endPoint">服务端地址</param>
+            <param name="registration">消息注册体</param>
+            <param name="builder">解码器</param>
+            <param name="configuration">配置</param>
+            <param name="bufferPool">缓冲池大小</param>
+            <param name="isRestConn">是否重连</param>
+        </member>
+        <member name="T:Loxi.Tool.Tcp.Codecs.ICodecBuilder">
+            <summary>
+            解码器接口
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Tcp.Codecs.ICodecBuilder.DecodingBuilder">
+            <summary>
+            解码
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Tcp.Codecs.ICodecBuilder.EncodingBuilder">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="M:Loxi.Tool.Tcp.Codecs.ICodecBuilder.Clone">
+            <summary>
+            克隆
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Loxi.Tool.Tcp.Server.AsyncTcpServer.Listener">
+            <summary>
+            开始监听
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Tcp.Server.AsyncTcpServerConfiguration.BacklogConnections">
+            <summary>
+            最大连接数
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Tcp.Server.AsyncTcpServerConfiguration.AllowNatTraversal">
+            <summary>
+            是否启动网络地址转换
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Tcp.Server.AsyncTcpServerConfiguration.ReuseAddress">
+            <summary>
+            是否允许将套接字绑定到已在使用中的地址
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Tcp.Server.AsyncTcpServerConfiguration.ReceiveBufferSize">
+            <summary>
+            接收缓冲区的大小（以字节为单位）。 默认值为 8192 个字节。
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Tcp.Server.AsyncTcpServerConfiguration.SendBufferSize">
+            <summary>
+            发送缓冲区的大小（以字节为单位）。 默认值为 8192 个字节。
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Tcp.Server.AsyncTcpServerConfiguration.ReceiveTimeout">
+            <summary>
+            连接的超时值（以毫秒为单位）。 默认值为 0。
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Tcp.Server.AsyncTcpServerConfiguration.SendTimeout">
+            <summary>
+            发送超时值（以毫秒为单位）。 默认值为 0。
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Tcp.Server.AsyncTcpServerConfiguration.NoDelay">
+            <summary>
+            如果禁用延迟，则为 true；否则为 false。 默认值为 false。
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Tcp.Server.AsyncTcpServerConfiguration.LingerState">
+            <summary>
+            获取或设置有关关联的套接字的延迟状态的信息。
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Tcp.Server.AsyncTcpServerConfiguration.KeepAlive">
+            <summary>
+            是否保持连接
+            </summary>
+        </member>
+        <member name="P:Loxi.Tool.Tcp.Server.AsyncTcpServerConfiguration.KeepAliveInterval">
+            <summary>
+            保持连接间隔
+            </summary>
+        </member>
+        <member name="M:Loxi.Tool.Tcp.Server.IAsyncTcpServerSessionMessage.OnSessionStarted(Loxi.Tool.Tcp.Server.AsyncTcpServerSession)">
+            <summary>
+            客户端已连接
+            </summary>
+            <param name="session"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Loxi.Tool.Tcp.Server.IAsyncTcpServerSessionMessage.OnSessionDataReceived(Loxi.Tool.Tcp.Server.AsyncTcpServerSession,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            接收到数据
+            </summary>
+            <param name="session"></param>
+            <param name="data"></param>
+            <param name="offset"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Loxi.Tool.Tcp.Server.IAsyncTcpServerSessionMessage.OnSessionClosed(Loxi.Tool.Tcp.Server.AsyncTcpServerSession)">
+            <summary>
+            客户端断开连接
+            </summary>
+            <param name="session"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Loxi.Tool.Tcp.Server.IAsyncTcpServerSessionMessage.OnSessionError(System.Exception)">
+            <summary>
+            错误消息输出
+            </summary>
+            <param name="msg"></param>
+            <param name="ex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Loxi.Tool.Transform.StructToBytes(System.Object)">
+            <summary>
+            结构体转字节数组
+            </summary>
+            <param name="structure"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
