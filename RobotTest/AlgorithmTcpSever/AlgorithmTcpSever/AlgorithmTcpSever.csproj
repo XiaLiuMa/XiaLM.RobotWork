@@ -51,6 +51,7 @@
     <Compile Include="AlgorithmBuilder.cs" />
     <Compile Include="ByteUtil.cs" />
     <Compile Include="Model\AlgorithmRequestParam.cs" />
+    <Compile Include="Model\BlackBodyPoint.cs" />
     <Compile Include="Model\DeleteFace.cs" />
     <Compile Include="Model\SelectFace.cs" />
     <Compile Include="Model\UpLoadFace.cs" />

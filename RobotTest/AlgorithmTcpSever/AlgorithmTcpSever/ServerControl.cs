@@ -102,7 +102,6 @@ namespace AlgorithmTcpSever
                 Console.WriteLine($"服务端发送数据失败:{ex.ToString()}");
             }
         }
-
     }
 
     /// <summary>
@@ -113,128 +112,103 @@ namespace AlgorithmTcpSever
         private bool IsSend = false;    //是否持续发送截图 
         #region     常量
         /// <summary>
-        /// 功能码：心跳
+        /// code：心跳
         /// </summary>
         private const byte CODE_HEARTBEAT = 0x01;
-
         /// <summary>
-        /// 功能码：跟随
+        /// code：跟随
         /// </summary>
         private const byte CODE_FOLLOW = 0x02;
         /// <summary>
-        /// 跟随_开始跟随
-        /// </summary>
-        private const byte FOLLOW_START = 0x1E;
-        /// <summary>
-        /// 跟随_关闭跟随
-        /// </summary>
-        private const byte FOLLOW_STOP = 0x3E;
-        /// <summary>
-        /// 跟随_重新跟随
-        /// </summary>
-        private const byte FOLLOW_RESTART = 0x5E;
-        /// <summary>
-        /// 启动成功
-        /// </summary>
-        private const byte START_SUCCESS = 0x1F;
-        /// <summary>
-        /// 启动失败
-        /// </summary>
-        private const byte START_FAIL = 0x2F;
-        /// <summary>
-        /// |关闭成功
-        /// </summary>
-        private const byte STOP_SUCCESS = 0x3F;
-        /// <summary>
-        /// 关闭失败
-        /// </summary>
-        private const byte STOP_FAIL = 0x4F;
-        /// <summary>
-        /// 重新跟随成功
-        /// </summary>
-        private const byte RESTART_SUCCESS = 0x5F;
-        /// <summary>
-        /// 重新跟随失败
-        /// </summary>
-        private const byte RESTART_FAIL = 0x6F;
-
-        /// <summary>
-        /// 功能码：人脸识别
+        /// code：人脸识别
         /// </summary>
         private const byte CODE_FACEIDENTIFY = 0x03;
         /// <summary>
-        /// 人脸_开始识别
-        /// </summary>
-        private const byte IDENTIFY_START = 0x1E;
-        /// <summary>
-        /// 人脸_关闭识别
-        /// </summary>
-        private const byte IDENTIFY_STOP = 0x3E;
-        /// <summary>
-        /// 人脸_重新识别
-        /// </summary>
-        private const byte IDENTIFY_RESTART = 0x5E;
-
-        /// <summary>
-        /// 功能码：(人脸)名单上传
+        /// code：(人脸)名单上传
         /// </summary>
         private const byte CODE_FACEUPLOAD = 0x04;
         /// <summary>
-        /// 上传成功
-        /// </summary>
-        private const byte UPLOAD_SUCCESS = 0x1F;
-        /// <summary>
-        /// 上传失败
-        /// </summary>
-        private const byte UPLOAD_FAIL = 0x2F;
-
-        /// <summary>
-        /// 功能码：(人脸)名单查询
+        /// code：(人脸)名单查询
         /// </summary>
         private const byte CODE_FACESELECT = 0x05;
         /// <summary>
-        /// 查询_人脸白名单
-        /// </summary>
-        private const byte SELECT_WHITEFACE = 0x1E;
-        /// <summary>
-        /// 查询_人脸黑名单
-        /// </summary>
-        private const byte SELECT_BLACKFACE = 0x2E;
-        /// <summary>
-        /// 查询_全部人脸名单
-        /// </summary>
-        private const byte SELECT_ALLFACE = 0x3E;
-
-        /// <summary>
-        /// 功能码：人脸对比
-        /// </summary>
-        private const byte CODE_FACCONTRAST = 0x21;
-        /// <summary>
-        /// 启动人脸对比
-        /// </summary>
-        private const byte FACECONTRAST_START = 0x1E;
-        /// <summary>
-        /// 关闭人脸对比
-        /// </summary>
-        private const byte FACECONTRAST_STOP = 0x3E;
-        /// <summary>
-        /// 功能码：发送截图
-        /// </summary>
-        private const byte CODE_SENDIMG = 0x40;
-
-
-        /// <summary>
-        /// 功能码：(人脸)名单删除
+        /// code：(人脸)名单删除
         /// </summary>
         private const byte CODE_FACEDELETE = 0x06;
         /// <summary>
-        /// 功能码：(人脸)名单清空
+        /// code：(人脸)名单清空
         /// </summary>
         private const byte CODE_FACECLEAR = 0x07;
         /// <summary>
-        /// 功能码：(人脸)名单报警
+        /// code：(人脸)名单报警
         /// </summary>
         private const byte CODE_FACEALARM = 0x08;
+        /// <summary>
+        /// code：人脸对比
+        /// </summary>
+        private const byte CODE_FACCONTRAST = 0x40;
+        /// <summary>
+        /// code：(人脸对比)发送截图
+        /// </summary>
+        private const byte CODE_SENDIMG = 0x41;
+        /// <summary>
+        /// code：获取黑体坐标
+        /// </summary>
+        private const byte CODE_GETPOINT = 0x50;
+        /// <summary>
+        /// code：返回黑体坐标
+        /// </summary>
+        private const byte CODE_SETPOINT = 0x51;
+
+        /// <summary>
+        /// body：启动
+        /// </summary>
+        private const byte START = 0x1E;
+        /// <summary>
+        /// body：关闭
+        /// </summary>
+        private const byte STOP = 0x3E;
+        /// <summary>
+        /// body：重启
+        /// </summary>
+        private const byte RESTART = 0x5E;
+        /// <summary>
+        /// body：成功(启动成功)
+        /// </summary>
+        private const byte SUCCESS = 0x1F;
+        /// <summary>
+        /// body：失败(启动失败)
+        /// </summary>
+        private const byte FAIL = 0x2F;
+        /// <summary>
+        /// body：关闭成功
+        /// </summary>
+        private const byte STOPSUCCESS = 0x3F;
+        /// <summary>
+        /// body：关闭失败
+        /// </summary>
+        private const byte STOPFAIL = 0x4F;
+        /// <summary>
+        /// body：重启成功
+        /// </summary>
+        private const byte RESTARTSUCCESS = 0x5F;
+        /// <summary>
+        /// body：重启失败
+        /// </summary>
+        private const byte RESTARTFAIL = 0x6F;
+        /// <summary>
+        /// body：人脸白名单
+        /// </summary>
+        private const byte WHITEFACE = 0x1E;
+        /// <summary>
+        /// body：人脸黑名单
+        /// </summary>
+        private const byte BLACKFACE = 0x2E;
+        /// <summary>
+        /// body：全部人脸名单
+        /// </summary>
+        private const byte ALLFACE = 0x3E;
+
         #endregion
 
         public async Task OnSessionDataReceived(AsyncTcpServerSession session, byte[] data, int offset, int count)
@@ -251,124 +225,138 @@ namespace AlgorithmTcpSever
                 switch (code)
                 {
                     case CODE_FACEUPLOAD:   //名单上传
-                        string upLoadFaceStr = Encoding.UTF8.GetString(unBase64Bytes);
-                        UpLoadFace upLoadFace = SerializeHelper.SerializeJsonToObject<UpLoadFace>(upLoadFaceStr);
-                        byte[] imgBytes = Convert.FromBase64String(upLoadFace.imagebytes);
-                        FileReadWriteHelper.WriteBytesToFile($@"D:\Test\{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.jpg", imgBytes);  //保存图片
-
-                        ServerControl.GetInstance().faceList.Add(new FaceInfo()
                         {
-                            filename = upLoadFace.filename,
-                            idnumber = upLoadFace.idnumber,
-                            imagebytes = upLoadFace.imagebytes,
-                            name = upLoadFace.name,
-                            sex = upLoadFace.sex,
-                            serialnumber = upLoadFace.serialnumber,
-                            type = upLoadFace.type
-                        });
-                        ServerControl.GetInstance().ServerSendMsg(CODE_FACEUPLOAD, new byte[] { UPLOAD_SUCCESS });
-                        Console.WriteLine($"名单上传成功,列表还有白名单{ServerControl.GetInstance().faceList.Where(p => p.type.Equals("white")).Count()}个,和名单{ServerControl.GetInstance().faceList.Where(p => p.type.Equals("black")).Count()}个！");
-                        break;
+                            string upLoadFaceStr = Encoding.UTF8.GetString(unBase64Bytes);
+                            UpLoadFace upLoadFace = SerializeHelper.SerializeJsonToObject<UpLoadFace>(upLoadFaceStr);
+                            byte[] imgBytes = Convert.FromBase64String(upLoadFace.imagebytes);
+                            FileReadWriteHelper.WriteBytesToFile($@"D:\Test\{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.jpg", imgBytes);  //保存图片
+
+                            ServerControl.GetInstance().faceList.Add(new FaceInfo()
+                            {
+                                filename = upLoadFace.filename,
+                                idnumber = upLoadFace.idnumber,
+                                imagebytes = upLoadFace.imagebytes,
+                                name = upLoadFace.name,
+                                sex = upLoadFace.sex,
+                                serialnumber = upLoadFace.serialnumber,
+                                type = upLoadFace.type
+                            });
+                            ServerControl.GetInstance().ServerSendMsg(CODE_FACEUPLOAD, new byte[] { SUCCESS });
+                            Console.WriteLine($"名单上传成功,列表还有白名单{ServerControl.GetInstance().faceList.Where(p => p.type.Equals("white")).Count()}个,和名单{ServerControl.GetInstance().faceList.Where(p => p.type.Equals("black")).Count()}个！");
+                            break;
+                        }
                     case CODE_FACESELECT:   //名单查询
-                        SelectFace selectFace = new SelectFace();
-                        switch (unBase64Bytes[0])
                         {
-                            case SELECT_WHITEFACE:
-                                selectFace.faceList = ServerControl.GetInstance().faceList.Where(p => p.type.Equals("white")).ToList();
-                                break;
-                            case SELECT_BLACKFACE:
-                                selectFace.faceList = ServerControl.GetInstance().faceList.Where(p => p.type.Equals("black")).ToList();
-                                break;
-                            case SELECT_ALLFACE:
-                                selectFace.faceList = ServerControl.GetInstance().faceList;
-                                break;
+                            SelectFace selectFace = new SelectFace();
+                            switch (unBase64Bytes[0])
+                            {
+                                case WHITEFACE:
+                                    selectFace.faceList = ServerControl.GetInstance().faceList.Where(p => p.type.Equals("white")).ToList();
+                                    break;
+                                case BLACKFACE:
+                                    selectFace.faceList = ServerControl.GetInstance().faceList.Where(p => p.type.Equals("black")).ToList();
+                                    break;
+                                case ALLFACE:
+                                    selectFace.faceList = ServerControl.GetInstance().faceList;
+                                    break;
+                            }
+                            string jsonStr = SerializeHelper.SerializeObjectToJson(selectFace);
+                            byte[] tBytes = Encoding.UTF8.GetBytes(jsonStr);
+                            ServerControl.GetInstance().ServerSendMsg(CODE_FACESELECT, tBytes);
+                            Console.WriteLine($"名单查询成功,一共查到{selectFace.faceList.Count}个名单！");
+                            break;
                         }
-                        string jsonStr = SerializeHelper.SerializeObjectToJson(selectFace);
-                        byte[] tBytes = Encoding.UTF8.GetBytes(jsonStr);
-                        ServerControl.GetInstance().ServerSendMsg(CODE_FACESELECT, tBytes);
-                        Console.WriteLine($"名单查询成功,一共查到{selectFace.faceList.Count}个名单！");
-                        break;
                     case CODE_FACEDELETE:   //名单删除
-                        string deleteFaceStr = Encoding.UTF8.GetString(unBase64Bytes);
-                        DeleteFace deleteFace = SerializeHelper.SerializeJsonToObject<DeleteFace>(deleteFaceStr);
+                        {
+                            string deleteFaceStr = Encoding.UTF8.GetString(unBase64Bytes);
+                            DeleteFace deleteFace = SerializeHelper.SerializeJsonToObject<DeleteFace>(deleteFaceStr);
 
-                        var dFace = ServerControl.GetInstance().faceList.Where(p => p.type.Equals(deleteFace.type) && p.serialnumber.Equals(deleteFace.serialnumber)).First();
-                        ServerControl.GetInstance().faceList.Remove(dFace);
+                            var dFace = ServerControl.GetInstance().faceList.Where(p => p.type.Equals(deleteFace.type) && p.serialnumber.Equals(deleteFace.serialnumber)).First();
+                            ServerControl.GetInstance().faceList.Remove(dFace);
 
-                        ServerControl.GetInstance().ServerSendMsg(CODE_FACEDELETE, new byte[] { UPLOAD_SUCCESS });
-                        Console.WriteLine($"名单删除成功,列表还有白名单{ServerControl.GetInstance().faceList.Where(p => p.type.Equals("white")).Count()}个,和名单{ServerControl.GetInstance().faceList.Where(p => p.type.Equals("black")).Count()}个！");
-                        break;
+                            ServerControl.GetInstance().ServerSendMsg(CODE_FACEDELETE, new byte[] { SUCCESS });
+                            Console.WriteLine($"名单删除成功,列表还有白名单{ServerControl.GetInstance().faceList.Where(p => p.type.Equals("white")).Count()}个,和名单{ServerControl.GetInstance().faceList.Where(p => p.type.Equals("black")).Count()}个！");
+                            break;
+                        }
                     case CODE_FACECLEAR:    //名单清除
-                        List<FaceInfo> clList = new List<FaceInfo>();
-                        switch (unBase64Bytes[0])
                         {
-                            case SELECT_WHITEFACE:
-                                clList = ServerControl.GetInstance().faceList.Where(p => p.type.Equals("black")).ToList();
-                                break;
-                            case SELECT_BLACKFACE:
-                                clList = ServerControl.GetInstance().faceList.Where(p => p.type.Equals("black")).ToList();
-                                break;
-                            case SELECT_ALLFACE:
-                                clList = ServerControl.GetInstance().faceList;
-                                break;
-                        }
-                        foreach (var item in clList)
-                        {
-                            ServerControl.GetInstance().faceList.Remove(item);
-                        }
+                            List<FaceInfo> clList = new List<FaceInfo>();
+                            switch (unBase64Bytes[0])
+                            {
+                                case WHITEFACE:
+                                    clList = ServerControl.GetInstance().faceList.Where(p => p.type.Equals("black")).ToList();
+                                    break;
+                                case BLACKFACE:
+                                    clList = ServerControl.GetInstance().faceList.Where(p => p.type.Equals("black")).ToList();
+                                    break;
+                                case ALLFACE:
+                                    clList = ServerControl.GetInstance().faceList;
+                                    break;
+                            }
+                            foreach (var item in clList)
+                            {
+                                ServerControl.GetInstance().faceList.Remove(item);
+                            }
 
-                        ServerControl.GetInstance().ServerSendMsg(CODE_FACECLEAR, new byte[] { UPLOAD_SUCCESS });
-                        Console.WriteLine($"名单清除成功,列表还有白名单{ServerControl.GetInstance().faceList.Where(p => p.type.Equals("white")).Count()}个,和名单{ServerControl.GetInstance().faceList.Where(p => p.type.Equals("black")).Count()}个！");
-                        break;
+                            ServerControl.GetInstance().ServerSendMsg(CODE_FACECLEAR, new byte[] { SUCCESS });
+                            Console.WriteLine($"名单清除成功,列表还有白名单{ServerControl.GetInstance().faceList.Where(p => p.type.Equals("white")).Count()}个,和名单{ServerControl.GetInstance().faceList.Where(p => p.type.Equals("black")).Count()}个！");
+                            break;
+                        }
                     case CODE_FACCONTRAST:    //人脸对比
-                        switch (unBase64Bytes[0])
                         {
-                            case FACECONTRAST_START:
-                                ServerControl.GetInstance().ServerSendMsg(CODE_FACCONTRAST, new byte[] { START_SUCCESS });
-                                Console.WriteLine("启动人脸对比成功，抓图中。。。");
-                                SendImg();
-                                break;
-                            case FACECONTRAST_STOP:
-                                ServerControl.GetInstance().ServerSendMsg(CODE_FACCONTRAST, new byte[] { STOP_SUCCESS });
-                                IsSend = false;
-                                Console.WriteLine("关闭人脸对比成功!");
-                                break;
+                            switch (unBase64Bytes[0])
+                            {
+                                case START:
+                                    ServerControl.GetInstance().ServerSendMsg(CODE_FACCONTRAST, new byte[] { SUCCESS });
+                                    Console.WriteLine("启动人脸对比成功，抓图中。。。");
+                                    SendImg();
+                                    break;
+                                case STOP:
+                                    ServerControl.GetInstance().ServerSendMsg(CODE_FACCONTRAST, new byte[] { SUCCESS });
+                                    IsSend = false;
+                                    Console.WriteLine("关闭人脸对比成功!");
+                                    break;
+                            }
+                            break;
                         }
-                        break;
                     case CODE_FOLLOW:   //跟随
-                        switch (unBase64Bytes[0])
                         {
-                            case FOLLOW_START:
-                                ServerControl.GetInstance().ServerSendMsg(CODE_FOLLOW, new byte[] { START_SUCCESS });
-                                Console.WriteLine("启动跟随成功!");
-                                break;
-                            case FOLLOW_STOP:
-                                ServerControl.GetInstance().ServerSendMsg(CODE_FOLLOW, new byte[] { STOP_SUCCESS });
-                                Console.WriteLine("关闭跟随成功!");
-                                break;
-                            case FOLLOW_RESTART:
-                                ServerControl.GetInstance().ServerSendMsg(CODE_FOLLOW, new byte[] { RESTART_SUCCESS });
-                                Console.WriteLine("重新跟随成功!");
-                                break;
+                            switch (unBase64Bytes[0])
+                            {
+                                case START:
+                                    ServerControl.GetInstance().ServerSendMsg(CODE_FOLLOW, new byte[] { SUCCESS });
+                                    Console.WriteLine("启动跟随成功!");
+                                    break;
+                                case STOP:
+                                    ServerControl.GetInstance().ServerSendMsg(CODE_FOLLOW, new byte[] { SUCCESS });
+                                    Console.WriteLine("关闭跟随成功!");
+                                    break;
+                                case RESTART:
+                                    ServerControl.GetInstance().ServerSendMsg(CODE_FOLLOW, new byte[] { SUCCESS });
+                                    Console.WriteLine("重新跟随成功!");
+                                    break;
+                            }
+                            break;
                         }
-                        break;
+                    case CODE_GETPOINT: //获取黑体坐标
+                        {
+                            BlackBodyPoint blackBodyPoint = new BlackBodyPoint()
+                            {
+                                xpoint = 55,
+                                ypoint = 105
+                            };
+                            string jsonStr = SerializeHelper.SerializeObjectToJson(blackBodyPoint);
+                            string base64txt = Convert.ToBase64String(Encoding.UTF8.GetBytes(jsonStr));   //bas64编码
+                            byte[] body = Encoding.UTF8.GetBytes(base64txt);
+                            ServerControl.GetInstance().ServerSendMsg(CODE_SETPOINT, body);
+                            Console.WriteLine("启动人脸对比成功，抓图中。。。");
+                            break;
+                        }
                     case CODE_FACEIDENTIFY: //人脸识别
-                        switch (unBase64Bytes[0])
-                        {
-                            case IDENTIFY_START:
-                                ServerControl.GetInstance().ServerSendMsg(CODE_FOLLOW, new byte[] { START_SUCCESS });
-                                break;
-                            case IDENTIFY_STOP:
-                                ServerControl.GetInstance().ServerSendMsg(CODE_FOLLOW, new byte[] { STOP_SUCCESS });
-                                break;
-                            case IDENTIFY_RESTART:
-                                ServerControl.GetInstance().ServerSendMsg(CODE_FOLLOW, new byte[] { RESTART_SUCCESS });
-                                break;
-                        }
                         break;
-                    case CODE_FACEALARM:    //报警
+                    case CODE_FACEALARM:    //人脸报警
                         break;
-                    case CODE_HEARTBEAT:
+                    case CODE_HEARTBEAT:    //心跳
                         break;
                 }
             }
