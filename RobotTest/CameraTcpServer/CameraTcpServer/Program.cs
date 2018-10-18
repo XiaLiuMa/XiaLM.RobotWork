@@ -11,7 +11,7 @@ namespace CameraTcpServer
         static void Main(string[] args)
         {
             Console.WriteLine("程序已启动，输入Q/q退出程序！");
-            CameraServer.GetInstance().Init(13568);
+            CameraServer.GetInstance().Init(12368);
             string txt = string.Empty;
             while (!(txt = Console.ReadLine()).ToUpper().Equals("Q"))
             {

@@ -69,7 +69,7 @@ namespace AlgorithmTcpSever
             try
             {
                 if (isLive) return;
-                IPEndPoint iPEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 12568);
+                IPEndPoint iPEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 11368);
                 tcpServer = new AsyncTcpServer(iPEndPoint, new ServerMessage(), new AlgorithmBuilder());
                 tcpServer.Listener();
                 Console.WriteLine("服务端已启动");
