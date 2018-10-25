@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using XiaLM.Tool450.source.common;
 
@@ -30,12 +31,12 @@ namespace CameraTcpServer
         {
             try
             {
-                if (code.Equals(SEND_TEMPERATURE))  //设置低温阈值
+                if (code.SequenceEqual(SEND_TEMPERATURE))  //设置低温阈值
                 {
-                    sendHelper.temperature = BitConverter.ToInt16(body,0);  //温度
+                    sendHelper.temperature = BitConverter.ToInt16(body,0)/10.0f;  //温度
                 }
 
-                if (code.Equals(SEND_BLACKBODY))
+                if (code.SequenceEqual(SEND_BLACKBODY))
                 {
                     string strBody = Encoding.UTF8.GetString(body);     //Json字符串
                 }

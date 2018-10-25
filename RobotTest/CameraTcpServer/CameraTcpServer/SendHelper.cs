@@ -13,7 +13,13 @@ namespace CameraTcpServer
         /// 功能码：低温报警
         /// </summary>
         private byte[] CODE_ALARM = new byte[4] { 0xA2, 0x00, 0x01, 0x03 };
-        public short temperature { get; set; } = (short)10;
+
+        public float temperature { get; set; } = (float)10;
+
+        public SendHelper()
+        {
+            SendAlarm();
+        }
 
         /// <summary>
         /// 发送报警信息
@@ -24,8 +30,8 @@ namespace CameraTcpServer
             {
                 while (true)
                 {
-                    Thread.Sleep(TimeSpan.FromSeconds(1));
-                    if (temperature <= 1)
+                    Thread.Sleep(TimeSpan.FromSeconds(5));
+                    if (temperature <= 5)
                     {
                         BaseAlarmInfo baseAlarmInfo = new BaseAlarmInfo()
                         {

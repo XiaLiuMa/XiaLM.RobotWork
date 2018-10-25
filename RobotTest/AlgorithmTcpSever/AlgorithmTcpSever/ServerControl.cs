@@ -15,6 +15,10 @@ namespace AlgorithmTcpSever
 {
     public class ServerControl
     {
+        /// <summary>
+        /// code：返回黑体坐标
+        /// </summary>
+        private const byte CODE_SETPOINT = 0x51;
         private AsyncTcpServer tcpServer;
         private bool isLive = false;    //是否存活
         public List<FaceInfo> faceList; //名单列表
@@ -59,6 +63,7 @@ namespace AlgorithmTcpSever
                     type = "black",filename="105.jpg",name="105",sex="m",serialnumber=105,idnumber="101",imagebytes = Convert.ToBase64String(FileReadWriteHelper.ReadBytesFromFile(@"D:\Test\127.jpg"))
                 }
             };
+            AutoSetBlackBodyPoint();
         }
 
         /// <summary>
@@ -86,11 +91,11 @@ namespace AlgorithmTcpSever
         /// </summary>
         /// <param name="code">功能码</param>
         /// <param name="bytes">正文</param>
-        public void ServerSendMsg(byte code, byte[] bytes)
+        public void ServerSendMsg(byte code, byte[] body)
         {
             try
             {
-                string base64txt = Convert.ToBase64String(bytes); //bas64加密
+                string base64txt = Convert.ToBase64String(body); //bas64加密
                 byte[] base64Bytes = Encoding.UTF8.GetBytes(base64txt);
                 byte[] allBytes = new byte[base64Bytes.Length + 1];
                 allBytes[0] = code;
@@ -101,6 +106,29 @@ namespace AlgorithmTcpSever
             {
                 Console.WriteLine($"服务端发送数据失败:{ex.ToString()}");
             }
+        }
+
+        /// <summary>
+        /// 自动校准黑体坐标
+        /// </summary>
+        public void AutoSetBlackBodyPoint()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                while (true)
+                {
+                    Thread.Sleep(TimeSpan.FromSeconds(15));
+
+                    BlackBodyPoint blackBodyPoint = new BlackBodyPoint()
+                    {
+                        xpoint = 55,
+                        ypoint = 105
+                    };
+                    string jsonStr = SerializeHelper.SerializeObjectToJson(blackBodyPoint);
+                    byte[] body = Encoding.UTF8.GetBytes(jsonStr);
+                    ServerControl.GetInstance().ServerSendMsg(CODE_SETPOINT, body);
+                }
+            });
         }
     }
 
@@ -308,11 +336,12 @@ namespace AlgorithmTcpSever
                             {
                                 case START:
                                     ServerControl.GetInstance().ServerSendMsg(CODE_FACCONTRAST, new byte[] { SUCCESS });
+                                    IsSend = false;
                                     Console.WriteLine("启动人脸对比成功，抓图中。。。");
                                     SendImg();
                                     break;
                                 case STOP:
-                                    ServerControl.GetInstance().ServerSendMsg(CODE_FACCONTRAST, new byte[] { SUCCESS });
+                                    ServerControl.GetInstance().ServerSendMsg(CODE_FACCONTRAST, new byte[] { STOPSUCCESS });
                                     IsSend = false;
                                     Console.WriteLine("关闭人脸对比成功!");
                                     break;
@@ -328,11 +357,11 @@ namespace AlgorithmTcpSever
                                     Console.WriteLine("启动跟随成功!");
                                     break;
                                 case STOP:
-                                    ServerControl.GetInstance().ServerSendMsg(CODE_FOLLOW, new byte[] { SUCCESS });
+                                    ServerControl.GetInstance().ServerSendMsg(CODE_FOLLOW, new byte[] { STOPSUCCESS });
                                     Console.WriteLine("关闭跟随成功!");
                                     break;
                                 case RESTART:
-                                    ServerControl.GetInstance().ServerSendMsg(CODE_FOLLOW, new byte[] { SUCCESS });
+                                    ServerControl.GetInstance().ServerSendMsg(CODE_FOLLOW, new byte[] { RESTARTSUCCESS });
                                     Console.WriteLine("重新跟随成功!");
                                     break;
                             }
@@ -346,10 +375,9 @@ namespace AlgorithmTcpSever
                                 ypoint = 105
                             };
                             string jsonStr = SerializeHelper.SerializeObjectToJson(blackBodyPoint);
-                            string base64txt = Convert.ToBase64String(Encoding.UTF8.GetBytes(jsonStr));   //bas64编码
-                            byte[] body = Encoding.UTF8.GetBytes(base64txt);
+                            byte[] body = Encoding.UTF8.GetBytes(jsonStr);
                             ServerControl.GetInstance().ServerSendMsg(CODE_SETPOINT, body);
-                            Console.WriteLine("启动人脸对比成功，抓图中。。。");
+                            Console.WriteLine("校准黑体坐标成功！");
                             break;
                         }
                     case CODE_FACEIDENTIFY: //人脸识别
@@ -397,7 +425,7 @@ namespace AlgorithmTcpSever
 
         public async Task OnSessionClosed(AsyncTcpServerSession session)
         {
-            Console.WriteLine("客户端断开连接！");
+            Console.WriteLine($"{session.LocalEndPoint}已断开连接!");
         }
 
         public async Task OnSessionError(string msg, Exception ex)
@@ -407,7 +435,7 @@ namespace AlgorithmTcpSever
 
         public async Task OnSessionStarted(AsyncTcpServerSession session)
         {
-            Console.WriteLine("客户端建立连接！");
+            Console.WriteLine($"{session.LocalEndPoint}已连接!");
         }
     }
 }
